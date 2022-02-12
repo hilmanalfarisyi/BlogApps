@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlogPostTableViewCell" rowHeight="94" id="KGk-i7-Jjw" customClass="BlogPostTableViewCell" customModule="BlogApps" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="338" height="94"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIq-Yc-Olp">
+                        <rect key="frame" x="16" y="10" width="44" height="22.5"/>
+                        <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-sH-QLt" userLabel="ContentLabel">
+                        <rect key="frame" x="16" y="37.5" width="281" height="18.5"/>
+                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pf6-yd-jSm" userLabel="DeleteButton">
+                        <rect key="frame" x="305" y="34.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="8lM-0N-hgD"/>
+                            <constraint firstAttribute="height" constant="25" id="u9G-m0-K8s"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="trash" catalog="system"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-ni-lfP" userLabel="updated">
+                        <rect key="frame" x="16" y="71.5" width="28.5" height="14.5"/>
+                        <fontDescription key="fontDescription" name="Thonburi-Light" family="Thonburi" pointSize="11"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TIq-Yc-Olp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6fI-lg-Gx6"/>
+                    <constraint firstItem="Jme-sH-QLt" firstAttribute="trailing" secondItem="Pf6-yd-jSm" secondAttribute="leading" constant="-8" id="G9V-ex-cQI"/>
+                    <constraint firstItem="TIq-Yc-Olp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IwG-oA-PV3"/>
+                    <constraint firstItem="Pf6-yd-jSm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LvS-7p-y6y"/>
+                    <constraint firstItem="Jme-sH-QLt" firstAttribute="top" secondItem="TIq-Yc-Olp" secondAttribute="bottom" constant="5" id="N6N-nl-NOE"/>
+                    <constraint firstAttribute="bottom" secondItem="Xv8-ni-lfP" secondAttribute="bottom" constant="8" id="daK-dr-c7p"/>
+                    <constraint firstItem="Jme-sH-QLt" firstAttribute="leading" secondItem="TIq-Yc-Olp" secondAttribute="leading" id="eBb-Uu-FTC"/>
+                    <constraint firstItem="Xv8-ni-lfP" firstAttribute="leading" secondItem="Jme-sH-QLt" secondAttribute="leading" id="efl-BU-I5L"/>
+                    <constraint firstAttribute="trailing" secondItem="Pf6-yd-jSm" secondAttribute="trailing" constant="8" id="k9p-ad-iTA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="contentLabel" destination="Jme-sH-QLt" id="yci-qi-4Vm"/>
+                <outlet property="deleteButton" destination="Pf6-yd-jSm" id="uWd-UE-ENL"/>
+                <outlet property="titleLabel" destination="TIq-Yc-Olp" id="MVf-DZ-mYF"/>
+                <outlet property="updateAtLabel" destination="Xv8-ni-lfP" id="SOJ-zs-b6O"/>
+            </connections>
+            <point key="canvasLocation" x="63.768115942028992" y="94.419642857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="trash" catalog="system" width="121" height="128"/>
+    </resources>
+</document>

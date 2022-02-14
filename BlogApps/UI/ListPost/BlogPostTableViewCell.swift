@@ -15,25 +15,38 @@ class BlogPostTableViewCell: UITableViewCell {
     @IBOutlet weak var updateAtLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     
+    var onDeleteButtonTapped: ((Post) -> Void)?
+    var onEditButtonTapped: ((Post) -> Void)?
+    
+    var post: Post?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func bindView(post: Post) {
+        self.post = post
         titleLabel.text = post.title
         contentLabel.text = post.content
-        updateAtLabel.text = post.updatedAt
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM, yyyy • HH:mm"
+        updateAtLabel.text = dateFormatter.string(from: post.updatedAt.toDate() ?? Date())
+        
         
         
     }
     
+    
+    @IBAction func onDeleteButtonTapped(_ sender: Any) {
+        onDeleteButtonTapped?(post!)
+    }
+    
+    
+    @IBAction func onEditButtonClicked(_ sender: Any) {
+        onEditButtonTapped?(post!)
+    }
     
     
     

@@ -20,36 +20,31 @@ final class BlogPostDefaultNetworkModel: BlogPostNetworkModel {
 
     
     func retrieveListBlogPost() -> Observable<[Post]> {
-        print("DebugRequest retrieveListBlogPost")
+        
         return provider.rx.request(.getPosts).filterSuccessfulStatusCodes().map([Post].self).asObservable()
-//        return provider.requestWithValidation(.getPosts)
-//            .map(to: [Post].self)
-//            .flatMapForServerResponse()
     }
     
-    func showBlogPost() -> Observable<Post> {
-        return provider.rx.request(.showPost(id: 2)).filterSuccessfulStatusCodes().map(Post.self).asObservable()
-//        return provider.requestWithValidation(.showPost(id: 1))
-//            .map(to: Post.self)
-//            .flatMapForServerResponse()
+    func showBlogPost(id: Int) -> Observable<Post> {
         
-//        return Observable.just(Post(id: 1, title: "title", content: "Content", publishedAt: "publishedAt", createdAt: "createdAt", updatedAt: "updatedAt"))
+        return provider.rx.request(.showPost(id: id)).filterSuccessfulStatusCodes().map(Post.self).asObservable()
     }
     
     func createBlogPost(param: NewPostParam) -> Observable<Post> {
+        
         return provider.rx.request(.createPost(param: param)).filterSuccessfulStatusCodes().map(Post.self).asObservable()
-//        return Observable.just(false)
+
     }
     
     func deleteBlogPost(id: Int) -> Observable<Post> {
         
         return provider.rx.request(.deletePost(id: id)).filterSuccessfulStatusCodes().map(Post.self).asObservable()
-//        return Observable.just(false)
+
     }
     
     func updateBlogPost(id: Int, param: NewPostParam) -> Observable<Post> {
+        
         return provider.rx.request(.updatePost(id: id, param: param)).filterSuccessfulStatusCodes().map(Post.self).asObservable()
-//        return Observable.just(false)
+
     }
     
     

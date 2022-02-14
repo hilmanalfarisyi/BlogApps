@@ -40,14 +40,14 @@ extension MoyaProvider {
         return self.rx.request(target)
             .asObservable()
             .catch { _ -> Observable<Response> in
-                print("DebugRequest catch error")
+                
                 return Observable<Response>.error(NetworkError.unknown)
             }
             .flatMap({ (response: Response) -> Observable<Response> in
                 
                 let responseSuccess: CountableRange<Int> = (200..<300)
                 
-                print("DebugRequest \(response)")
+                
                 switch response.statusCode {
                     
                 case responseSuccess:

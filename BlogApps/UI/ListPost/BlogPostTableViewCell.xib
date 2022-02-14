@@ -29,30 +29,46 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pf6-yd-jSm" userLabel="DeleteButton">
-                        <rect key="frame" x="305" y="34.5" width="25" height="25"/>
+                        <rect key="frame" x="305" y="19.5" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="8lM-0N-hgD"/>
                             <constraint firstAttribute="height" constant="25" id="u9G-m0-K8s"/>
                         </constraints>
-                        <state key="normal" title="Button" image="trash" catalog="system"/>
+                        <state key="normal" image="trash" catalog="system"/>
+                        <connections>
+                            <action selector="onDeleteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bRZ-D6-zuN"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv8-ni-lfP" userLabel="updated">
-                        <rect key="frame" x="16" y="71.5" width="28.5" height="14.5"/>
-                        <fontDescription key="fontDescription" name="Thonburi-Light" family="Thonburi" pointSize="11"/>
+                        <rect key="frame" x="16" y="74" width="23.5" height="12"/>
+                        <fontDescription key="fontDescription" name="Thonburi-Light" family="Thonburi" pointSize="9"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-4H-s5N" userLabel="EditButton">
+                        <rect key="frame" x="303" y="49.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="Qsc-ki-AX9"/>
+                            <constraint firstAttribute="height" constant="25" id="WdI-bY-2sK"/>
+                        </constraints>
+                        <state key="normal" image="pencil.circle" catalog="system"/>
+                        <connections>
+                            <action selector="onEditButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z1e-VW-N4R"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TIq-Yc-Olp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6fI-lg-Gx6"/>
                     <constraint firstItem="Jme-sH-QLt" firstAttribute="trailing" secondItem="Pf6-yd-jSm" secondAttribute="leading" constant="-8" id="G9V-ex-cQI"/>
                     <constraint firstItem="TIq-Yc-Olp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IwG-oA-PV3"/>
-                    <constraint firstItem="Pf6-yd-jSm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LvS-7p-y6y"/>
+                    <constraint firstItem="Pf6-yd-jSm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-15" id="LvS-7p-y6y"/>
                     <constraint firstItem="Jme-sH-QLt" firstAttribute="top" secondItem="TIq-Yc-Olp" secondAttribute="bottom" constant="5" id="N6N-nl-NOE"/>
                     <constraint firstAttribute="bottom" secondItem="Xv8-ni-lfP" secondAttribute="bottom" constant="8" id="daK-dr-c7p"/>
                     <constraint firstItem="Jme-sH-QLt" firstAttribute="leading" secondItem="TIq-Yc-Olp" secondAttribute="leading" id="eBb-Uu-FTC"/>
                     <constraint firstItem="Xv8-ni-lfP" firstAttribute="leading" secondItem="Jme-sH-QLt" secondAttribute="leading" id="efl-BU-I5L"/>
                     <constraint firstAttribute="trailing" secondItem="Pf6-yd-jSm" secondAttribute="trailing" constant="8" id="k9p-ad-iTA"/>
+                    <constraint firstAttribute="trailing" secondItem="1Qn-4H-s5N" secondAttribute="trailing" constant="10" id="lfx-bm-10h"/>
+                    <constraint firstItem="1Qn-4H-s5N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="15" id="q2t-P9-YBm"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -66,6 +82,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
     </resources>
 </document>

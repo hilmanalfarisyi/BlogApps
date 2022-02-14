@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListPostViewController" customModule="BlogApps" customModuleProvider="target">
             <connections>
+                <outlet property="addNewPostImageView" destination="vET-n6-XFt" id="pnU-ss-43J"/>
                 <outlet property="listPostTableView" destination="AF7-Zm-sO0" id="Ejf-9c-f0B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,18 +27,27 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vET-n6-XFt">
+                            <rect key="frame" x="348" y="752.5" width="50" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Bck-Qr-X3w"/>
+                                <constraint firstAttribute="width" constant="50" id="xwu-JB-0ul"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="AF7-Zm-sO0" firstAttribute="leading" secondItem="tcE-Dz-BFa" secondAttribute="leading" id="SyL-eH-DQA"/>
                         <constraint firstItem="AF7-Zm-sO0" firstAttribute="top" secondItem="tcE-Dz-BFa" secondAttribute="top" id="a0U-vc-uLZ"/>
                         <constraint firstAttribute="bottom" secondItem="AF7-Zm-sO0" secondAttribute="bottom" id="bwy-2s-exb"/>
+                        <constraint firstAttribute="trailing" secondItem="vET-n6-XFt" secondAttribute="trailing" constant="16" id="cgX-py-7Hz"/>
                         <constraint firstAttribute="trailing" secondItem="AF7-Zm-sO0" secondAttribute="trailing" id="hmu-jZ-ekQ"/>
+                        <constraint firstAttribute="bottom" secondItem="vET-n6-XFt" secondAttribute="bottom" constant="16" id="twW-em-LT6"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="tcE-Dz-BFa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="B8S-2r-KUl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tcE-Dz-BFa" secondAttribute="bottom" id="Bdm-DN-Jie"/>
@@ -48,11 +58,9 @@
         </view>
     </objects>
     <resources>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

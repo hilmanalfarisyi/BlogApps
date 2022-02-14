@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         
         createWindow()
-        window?.rootViewController = ListPostViewController()
+        window?.rootViewController = UINavigationController(rootViewController: ListPostViewController(viewModel: ListPostViewModel()))
         NFX.sharedInstance().start()
         return true
     }
@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let windowFrame = UIScreen.main.bounds
         self.window = UIWindow(frame: windowFrame)
         self.window?.makeKeyAndVisible()
+        
     }
     
 }

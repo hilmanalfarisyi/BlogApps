@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpViewController" customModule="BlogApps" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="Lae-dg-1Mg" id="M84-s4-qN2"/>
                 <outlet property="noButton" destination="grb-KL-gsC" id="hF1-MM-XHP"/>
                 <outlet property="titleLabel" destination="e18-8H-VoE" id="M9z-Nr-PPU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

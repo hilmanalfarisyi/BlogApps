@@ -15,6 +15,11 @@ class ShowFullPostViewModel {
     private var title = PublishSubject<String>()
     private var content = PublishSubject<String>()
     private var showLoading = PublishSubject<Bool>()
+    private var error = PublishSubject<String>()
+    
+    var errorObservable : Observable<String> {
+        error.asObservable()
+    }
     
     var showLoadingObservable : Observable<Bool> {
         showLoading.asObservable()
@@ -62,6 +67,7 @@ class ShowFullPostViewModel {
                 
             } onError: { [weak self] (error: Error) in
                 self?.showLoading.onNext(false)
+                self?.error.onNext("Something Wrong, Please Try Again")
                 
 
             }.disposed(by: dispose)

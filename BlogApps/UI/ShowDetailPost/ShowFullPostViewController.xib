@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowFullPostViewController" customModule="BlogApps" customModuleProvider="target">
             <connections>
                 <outlet property="contentLabel" destination="MJb-n6-h3e" id="RvB-zv-2EC"/>
+                <outlet property="contentView" destination="J88-Te-1ne" id="UIw-zh-6wI"/>
                 <outlet property="titleLable" destination="iSP-ia-qBf" id="XWy-zl-KhF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

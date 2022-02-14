@@ -63,6 +63,19 @@ class EditPostViewController: UIViewController {
         bindLoadingView(viewModel: viewModel)
         bindBackToListScreen(viewModel: viewModel)
         bindNavigationTitle(viewModel: viewModel)
+        bindErrorRequest(viewModel: viewModel)
+        
+    }
+    
+    private func bindErrorRequest(viewModel : EditPostViewModel) {
+        viewModel.errorObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] (errorMessage: String) in
+                
+                self?.showError(content: errorMessage)
+           
+            }.disposed(by: dispose)
+
     }
     
     private func bindLoadingView(viewModel : EditPostViewModel) {
@@ -96,12 +109,21 @@ class EditPostViewController: UIViewController {
             .subscribe { [weak self] (title: String) in
               
                 self?.title = title
-                
-                
-
-              
+    
             }.disposed(by: dispose)
 
+    }
+    
+    private func showError(content: String) {
+        
+        let alert = UIAlertController(title: "Alert", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { [weak self] action in
+            self?.viewModel?.submitNewPost( param: NewPostParam(title: self?.titleTextView.text ?? "", content: self?.contentTextView.text ?? ""))
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func bindBackToListScreen(viewModel : EditPostViewModel) {

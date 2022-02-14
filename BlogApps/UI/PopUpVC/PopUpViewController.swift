@@ -16,6 +16,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var yesButton: UIButton!
     @IBOutlet private weak var noButton: UIButton!
+    @IBOutlet private weak var contentView: UIView!
     
     var dispose = DisposeBag()
     var viewModel: PopUpViewModel?
@@ -49,7 +50,6 @@ class PopUpViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         bindViewModel()
-        self.view.roundCorners(corners: [.topLeft, .topRight], radius: 8.0)
         
         yesButton.addTarget(self, action: #selector(onYesButtonTapped), for: UIControl.Event.touchUpInside)
         noButton.addTarget(self, action: #selector(onNoButtonTapped), for: UIControl.Event.touchUpInside)
@@ -59,6 +59,12 @@ class PopUpViewController: UIViewController {
         
         view.addSubview(blurredView)
         view.sendSubviewToBack(blurredView)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.contentView.roundCorners(corners: [.topRight, .topLeft], radius: 15)
+            
+        }
+        
         
     }
     
@@ -75,6 +81,18 @@ class PopUpViewController: UIViewController {
         bindShowLoading(viewModel: viewModel)
         bindDismissView(viewModel: viewModel)
         bindTitle(viewModel: viewModel)
+        bindErrorRequest(viewModel: viewModel)
+    }
+    
+    private func bindErrorRequest(viewModel : PopUpViewModel) {
+        viewModel.errorObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] (errorMessage: String) in
+                
+                self?.showError(content: errorMessage)
+           
+            }.disposed(by: dispose)
+
     }
     
     private func bindShowLoading(viewModel: PopUpViewModel) {
@@ -118,12 +136,25 @@ class PopUpViewController: UIViewController {
 
     }
     
+    private func showError(content: String) {
+        
+        let alert = UIAlertController(title: "Alert", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { [weak self] action in
+            self?.viewModel?.onDeletePost()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc func onYesButtonTapped() {
         self.viewModel?.onDeletePost()
         
     }
     
     @objc func onNoButtonTapped() {
+        
         self.dismiss(animated: true)
     }
 

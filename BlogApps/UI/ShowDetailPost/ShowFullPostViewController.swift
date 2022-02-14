@@ -13,6 +13,7 @@ class ShowFullPostViewController: UIViewController {
     
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var titleLable: UILabel!
+    @IBOutlet private weak var contentView: UIView!
     
     var dispose = DisposeBag()
     var viewModel: ShowFullPostViewModel?
@@ -52,10 +53,19 @@ class ShowFullPostViewController: UIViewController {
         viewModel?.viewDideAppear()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
+    }
+    
     private func configureView() {
         
         view.addSubview(blurredView)
         view.sendSubviewToBack(blurredView)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.contentView.roundCorners(corners: [.topRight, .topLeft], radius: 15)
+            
+        }
         
     }
     
@@ -65,11 +75,22 @@ class ShowFullPostViewController: UIViewController {
             return
         }
         
-        
         bindTitle(viewModel: viewModel)
         bindContent(viewModel: viewModel)
         bindLoadingView(viewModel: viewModel)
       
+        bindErrorRequest(viewModel: viewModel)
+    }
+    
+    private func bindErrorRequest(viewModel : ShowFullPostViewModel) {
+        viewModel.errorObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] (errorMessage: String) in
+                
+                self?.showError(content: errorMessage)
+           
+            }.disposed(by: dispose)
+
     }
     
     private func bindLoadingView(viewModel : ShowFullPostViewModel) {
@@ -115,9 +136,23 @@ class ShowFullPostViewController: UIViewController {
         self.navigationController?.pushViewController(editPostVc, animated: true)
         
     }
+    
+    private func showError(content: String) {
+        
+        let alert = UIAlertController(title: "Alert", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { [weak self] action in
+            self?.viewModel?.getDetailPost()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
   
     @IBAction func onCloseButtonTapped(_ sender: Any) {
         
+        SVProgressHUD.dismiss()
         self.dismiss(animated: true) {
             
         }

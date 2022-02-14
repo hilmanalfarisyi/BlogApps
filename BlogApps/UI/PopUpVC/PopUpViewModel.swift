@@ -19,6 +19,11 @@ class PopUpViewModel {
     private var dismissView = PublishSubject<Void>()
     private var showLoading = PublishSubject<Bool>()
     private var title = PublishSubject<String>()
+    private var error = PublishSubject<String>()
+    
+    var errorObservable : Observable<String> {
+        error.asObservable()
+    }
     
     var showLoadingObservable : Observable<Bool> {
         showLoading.asObservable()
@@ -57,6 +62,7 @@ class PopUpViewModel {
             
         } onError: { [weak self] (error: Error) in
             self?.showLoading.onNext(false)
+            self?.error.onNext("Something Wrong, Please Try Again")
           
         }.disposed(by: dispose)
         

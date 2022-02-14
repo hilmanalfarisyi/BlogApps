@@ -67,6 +67,18 @@ class ListPostViewController: UIViewController {
         bindLoadingView(viewModel: viewModel)
         bindReloadTableView(viewModel: viewModel)
         bindDeletePost(viewModel: viewModel)
+        bindErrorRequest(viewModel: viewModel)
+    }
+    
+    private func bindErrorRequest(viewModel : ListPostViewModel) {
+        viewModel.errorObservable
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] (errorMessage: String) in
+                
+                self?.showError(content: errorMessage)
+           
+            }.disposed(by: dispose)
+
     }
     
     private func bindLoadingView(viewModel : ListPostViewModel) {
@@ -156,9 +168,19 @@ class ListPostViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(showDeletePostVc), name: NSNotification.Name("showDeletePostVC"), object: nil)
         
-        
     }
     
+    private func showError(content: String) {
+        
+        let alert = UIAlertController(title: "Alert", message: content, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { [weak self] action in
+            self?.viewModel?.retriveListBlogPost()
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @objc func deletePostListener(_ notification: NSNotification) {
         
@@ -166,8 +188,7 @@ class ListPostViewController: UIViewController {
            
             viewModel?.onDeleteSuccess(post: data)
          }
-        
-        
+  
     }
     
     
@@ -187,8 +208,6 @@ class ListPostViewController: UIViewController {
             
             deletePost(post: data)
          }
-        
-        
     }
     
 

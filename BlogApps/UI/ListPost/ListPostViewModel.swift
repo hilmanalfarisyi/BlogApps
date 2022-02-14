@@ -20,12 +20,17 @@ class ListPostViewModel {
     
     private var showLoading = BehaviorRelay<Bool>(value: false)
     private var reloadTableView = PublishSubject<Void>()
+    private var error = PublishSubject<String>()
     
     private var deletePost = PublishSubject<Post>()
     
     
     var showLoadingObservable : Observable<Bool> {
         showLoading.asObservable()
+    }
+    
+    var errorObservable : Observable<String> {
+        error.asObservable()
     }
     
     var reloadTableViewObservable : Observable<Void> {
@@ -50,13 +55,11 @@ class ListPostViewModel {
             self?.showLoading.accept(false)
             self?.reloadTableView.onNext(())
             
-            
-            print("DebugRequest retriveListBlogPost \(listpost)")
-            
+        
             
         } onError: { [weak self] (error: Error) in
             self?.showLoading.accept(false)
-            print("DebugRequest retriveListBlogPost error \(error)")
+            self?.error.onNext("Something Wrong, Please Try Again")
             
 
         }.disposed(by: dispose)

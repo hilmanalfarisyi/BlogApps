@@ -15,6 +15,11 @@ class EditPostViewModel {
     private var content = PublishSubject<String>()
     private var showLoading = PublishSubject<Bool>()
     private var backToListPostScreen = PublishSubject<Void>()
+    private var error = PublishSubject<String>()
+    
+    var errorObservable : Observable<String> {
+        error.asObservable()
+    }
     
     var titleObservable : Observable<String> {
         title.asObservable()
@@ -72,7 +77,7 @@ class EditPostViewModel {
             
             } onError: { [weak self](error: Error) in
                 self?.showLoading.onNext(false)
-                     
+                self?.error.onNext("Something Wrong, Please Try Again")
             
             
             } .disposed(by: dispose)
@@ -86,7 +91,7 @@ class EditPostViewModel {
                     
                 } onError: { [weak self] (error: Error) in
                     self?.showLoading.onNext(false)
-                        
+                    self?.error.onNext("Something Wrong, Please Try Again")
                 } .disposed(by: dispose)
         }
         
